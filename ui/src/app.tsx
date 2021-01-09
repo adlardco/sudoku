@@ -10,9 +10,9 @@ import BuildTime from './components/buildTime';
 import GridModel from './model/gridModel';
 import RestControllerImpl from './controller/restControllerImpl';
 import GridController from './controller/gridController';
-import ActuatorController from './controller/actuatorController';
+import InfoController from './controller/infoController';
 import GoogleController from './controller/googleController';
-import HealthModel from './model/healthModel';
+import InfoModel from './model/infoModel';
 import { Message } from './components/message';
 import Timer from './timer';
 import FeatureFlag from './featureFlag';
@@ -37,13 +37,13 @@ export default class App extends React.Component<{}, {
   private static readonly ServerTimeout = 15000;
   private static readonly GoogleTimeout = 5000;
   private static readonly GoggleTimerInterval = 5000;
-  private static readonly HealthCheckTimerInterval = 20000;
+  private static readonly InfoCheckTimerInterval = 20000;
   private static readonly GACode = 'UA-184114069-1';
   private readonly googleController: GoogleController;
-  private readonly actuatorController: ActuatorController;
+  private readonly infoController: InfoController;
   private readonly gridController: GridController;
   private readonly googleTimer: Timer;
-  private readonly healthCheckTimer: Timer;
+  private readonly infoCheckTimer: Timer;
 
   constructor(props: {}) {
     super(props);
@@ -59,16 +59,16 @@ export default class App extends React.Component<{}, {
     this.googleController = new GoogleController(new RestControllerImpl(App.GoogleUrl, App.GoogleTimeout));
     const url = window.location.hostname === App.LocalHost ? App.LocalUrl : this.remoteURL();
     const restController = new RestControllerImpl(url, App.ServerTimeout);
-    this.actuatorController = new ActuatorController(restController);
+    this.infoController = new InfoController(restController);
     this.gridController = new GridController(restController);
     this.googleTimer = new Timer(App.GoggleTimerInterval, this.googleCheck);
-    this.healthCheckTimer = new Timer(App.HealthCheckTimerInterval, this.healthCheck);
+    this.infoCheckTimer = new Timer(App.InfoCheckTimerInterval, this.infoCheck);
   }
 
   componentDidMount() {
     this.initGA();
     this.googleTimer.start();
-    this.healthCheckTimer.start();
+    this.infoCheckTimer.start();
   }
 
   initGA() {
@@ -82,7 +82,7 @@ export default class App extends React.Component<{}, {
 
   componentWillUnmount() {
     this.googleTimer.stop();
-    this.healthCheckTimer.stop();
+    this.infoCheckTimer.stop();
   }
   
   render(): React.ReactElement<React.ReactNode> {
@@ -125,11 +125,11 @@ export default class App extends React.Component<{}, {
   }
 
   private googleCheck = () => { this.googleController.ping(this.googleResponse); }
-  private healthCheck = () => { this.actuatorController.getHealth(this.healthOk, this.healthError); }
+  private infoCheck = () => { this.infoController.getInfo(this.infoOk, this.infoError); }
   private newGrid(): GridModel { return new GridModel(Array<number>(App.NumCells).fill(0)); }
   private googleResponse = (ok: boolean) => { this.setState({ internetAccess: ok }) }
-  private healthOk = (health: HealthModel) => { this.setState({ connected: health.status === 'OK' }); }
-  private healthError = (e: Error) => { this.setState({ connected: false }); }
+  private infoOk = (info: InfoModel) => { this.setState({ connected: info.status === 'OK' }); }
+  private infoError = (e: Error) => { this.setState({ connected: false }); }
   private selectorDisabled(): boolean { return this.state.updating || this.state.selectedIndex === undefined; }
   private solveDisabled(): boolean { return this.state.updating || this.gridIsInvalid(this.state.grid); }
   private clearDisabled(): boolean { return this.state.updating; }
