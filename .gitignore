@@ -1,0 +1,16 @@
+.gradle
+build/
+bin/
+.settings/
+.vscode/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+.idea
+.project
+*.iws
+*.iml
+*.ipr
+*.class
+*.classpath
+lombok.config

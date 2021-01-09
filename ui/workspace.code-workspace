@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "..\\sudoku-solver-server"
+		},
+		{
+			"path": "..\\aws-temp"
+		},
+		{
+			"path": "..\\sudoku-solver-infra"
+		}
+	]
+}
