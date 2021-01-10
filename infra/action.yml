@@ -12,4 +12,5 @@ runs:
   image: 'Dockerfile'
   env:
     DATABASE_URL: ${{ inputs.DATABASE_URL }}
+    EMAIL: ${{ inputs.EMAIL }}
     API_KEY: ${{ inputs.API_KEY }}
