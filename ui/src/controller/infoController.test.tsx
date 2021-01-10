@@ -1,4 +1,3 @@
-import GridModel from '../model/gridModel';
 import RestController from './restController';
 import InfoController from './infoController';
 import { mock } from 'jest-mock-extended';
@@ -17,6 +16,6 @@ describe('InfoController', () => {
       const callback = () => {};
       const errorCallback = () => {};
       controller.getInfo(callback, errorCallback);
-      expect(restController.get).toHaveBeenCalledWith('api/info', callback, errorCallback);
+      expect(restController.get).toHaveBeenCalledWith('info', callback, errorCallback);
   });
 });

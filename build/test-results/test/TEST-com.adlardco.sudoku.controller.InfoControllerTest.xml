@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.adlardco.sudoku.controller.InfoControllerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-01-09T17:18:28" hostname="NEW-IHCHO8QH4FQ" time="0.03">
+  <properties/>
+  <testcase name="testInfo()" classname="com.adlardco.sudoku.controller.InfoControllerTest" time="0.03"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

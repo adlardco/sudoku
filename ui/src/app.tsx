@@ -31,7 +31,7 @@ export default class App extends React.Component<{}, {
   private static readonly NumCells = App.GridSize * App.GridSize;
   private static readonly LocalHost = 'localhost';
   private static readonly LocalPort = 8080;
-  private static readonly ServerContext = 'server';
+  private static readonly ServerContext = 'api';
   private static readonly LocalUrl = new URL(`http://${App.LocalHost}:${App.LocalPort}/${App.ServerContext}/`);
   private static readonly GoogleUrl = new URL('https://www.google.com');
   private static readonly ServerTimeout = 15000;

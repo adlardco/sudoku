@@ -3,7 +3,7 @@ import RestController from './restController';
 
 export default class GridController {
 
-  private static readonly Path = 'api/grid';
+  private static readonly Path = 'grid';
 
   private readonly controller: RestController;
 

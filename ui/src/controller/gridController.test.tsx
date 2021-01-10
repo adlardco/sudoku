@@ -18,6 +18,6 @@ describe('GridController', () => {
       const callback = () => {};
       const errorCallback = () => {};
       controller.solve(grid, callback, errorCallback);
-      expect(restController.post).toHaveBeenCalledWith('api/grid', '{\"cellValues\":[0,1]}', callback, errorCallback);
+      expect(restController.post).toHaveBeenCalledWith('grid', '{\"cellValues\":[0,1]}', callback, errorCallback);
   });
 });
