@@ -17,7 +17,7 @@ variable "stack" {
 }
 
 variable "appname" {
-    description = "The base name of the application"
+    description = "The name of the application"
     default = "adlardco-sudoku"
 }
 

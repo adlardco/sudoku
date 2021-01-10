@@ -4,9 +4,6 @@ inputs:
   DATABASE_URL:
     description: 'The URL of the database storing infrastructure configuration'
     required: true
-  EMAIL:
-    description: 'The email of the provider account'
-    required: true
   API_KEY:
     description: 'The API key to use to connect to the provider'
     required: true
@@ -15,5 +12,4 @@ runs:
   image: 'Dockerfile'
   env:
     DATABASE_URL: ${{ inputs.DATABASE_URL }}
-    EMAIL: ${{ inputs.EMAIL }}
     API_KEY: ${{ inputs.API_KEY }}
