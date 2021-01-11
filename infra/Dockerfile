@@ -7,4 +7,4 @@ ENV APP_HOME=/root/app/
 RUN mkdir -p $APP_HOME
 WORKDIR $APP_HOME
 COPY *.tf $APP_HOME
-CMD cd ${WORKING_DIR} && terraform init -backend-config="conn_str=${DATABASE_URL}" && terraform apply -auto-approve -var="email=${EMAIL}" -var="api_key=${API_KEY}"
+CMD cd ${WORKING_DIR} && terraform init -backend-config="conn_str=${DATABASE_URL}" && terraform apply -auto-approve -var="email=${EMAIL}" -var="api_key=${API_KEY}" -var="app_name=${APP_NAME}"

@@ -9,3 +9,4 @@ services:
       - DATABASE_URL=${DATABASE_URL}
       - EMAIL=${EMAIL}
       - API_KEY=${API_KEY}
+      - APP_NAME=${APP_NAME}

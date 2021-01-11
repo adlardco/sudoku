@@ -1,7 +1,7 @@
-set APP_NAME=sudoku-infra
+set APP_BACKEND_NAME=sudoku-infra
 
 REM heroku login
 REM heroku authorizations:create
-heroku create --region eu %APP_NAME%
-heroku addons:create heroku-postgresql:hobby-dev --app %APP_NAME%
-heroku config:get DATABASE_URL --app %APP_NAME%
+heroku create --region eu %APP_BACKEND_NAME%
+heroku addons:create heroku-postgresql:hobby-dev --app %APP_BACKEND_NAME%
+heroku config:get DATABASE_URL --app %APP_BACKEND_NAME%
