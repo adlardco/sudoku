@@ -21,8 +21,10 @@ public class Application {
 
     private static final String CONTENT_TYPE = "application/json";
 
-    @NonNull private final ApplicationConfig config;
-    @NonNull private final Gson gson;
+    @NonNull
+    private final ApplicationConfig config;
+    @NonNull
+    private final Gson gson;
 
     private void run() {
         port(config.getPort());
@@ -61,8 +63,15 @@ public class Application {
         });
     }
 
+    private static int getPort() {
+        var environmentValues = System.getenv();
+        var portText = environmentValues.get("PORT");
+        return (portText == null || portText.trim().isEmpty()) ? 8080 : Integer.parseInt(portText.trim());
+    }
+
     public static void main(String[] args) {
-        var config = new ApplicationConfig(8080, 81, 15000);
+        var port = getPort();
+        var config = new ApplicationConfig(port, 81, 15000);
         var application = new Application(config, new Gson());
         application.run();
     }
