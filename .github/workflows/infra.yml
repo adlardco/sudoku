@@ -9,6 +9,7 @@ jobs:
       uses: actions/checkout@v2
     - name: infra
       uses: ./infra
+      working-directory: ./infra
       id: infra
       with:
         DATABASE_URL: ${{ secrets.DATABASE_URL }}
