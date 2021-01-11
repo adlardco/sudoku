@@ -4,10 +4,6 @@ on:
 jobs:
   infra:
     runs-on: ubuntu-18.04
-    defaults:
-      run:
-        shell: bash
-        working-directory: infra
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -15,6 +11,7 @@ jobs:
       id: infra
       uses: ./infra
       with:
+        WORKING_DIR: ./infra
         DATABASE_URL: ${{ secrets.DATABASE_URL }}
         EMAIL: ${{ secrets.EMAIL }}
         API_KEY: ${{ secrets.API_KEY }}

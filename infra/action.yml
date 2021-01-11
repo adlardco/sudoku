@@ -14,6 +14,7 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   env:
+    WORKING_DIR: ${{ inputs.WORKING_DIR }}
     DATABASE_URL: ${{ inputs.DATABASE_URL }}
     EMAIL: ${{ inputs.EMAIL }}
     API_KEY: ${{ inputs.API_KEY }}

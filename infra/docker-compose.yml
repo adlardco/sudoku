@@ -5,6 +5,7 @@ services:
       context: .
     image: sudoku-infra:latest
     environment:
+      - WORKING_DIR=.
       - DATABASE_URL=${DATABASE_URL}
       - EMAIL=${EMAIL}
       - API_KEY=${API_KEY}
