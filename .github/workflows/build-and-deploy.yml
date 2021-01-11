@@ -1,0 +1,25 @@
+name: build-and-deploy
+on:
+  push:
+    branches: [ main ]
+    paths:
+    - 'server/**'
+    - 'ui/**'
+  workflow_dispatch:
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: login
+      env: 
+        HEROKU_API_KEY: ${{ secrets.API_KEY }}
+      run: heroku container:login 
+    - name: build-and-push
+      env:
+        HEROKU_API_KEY: ${{ secrets.API_KEY }}
+      run: heroku container:push -a ${{ secrets.APP_NAME }} web 
+    - name: release
+      env:
+        HEROKU_API_KEY: ${{ secrets.API_KEY }}
+      run: heroku container:release -a ${{ secrets.APP_NAME }} web
