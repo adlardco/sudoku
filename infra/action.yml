@@ -2,10 +2,13 @@ name: 'infrastructure'
 description: 'Deploy Infrastructure'
 inputs:
   DATABASE_URL:
-    description: 'The URL of the database storing infrastructure configuration'
+    description: 'The URL of the store of infrastructure configuration'
+    required: true
+  EMAIL:
+    description: 'The account to use to connect to the provider'
     required: true
   API_KEY:
-    description: 'The API key to use to connect to the provider'
+    description: 'The key to use to connect to the provider'
     required: true
 runs:
   using: 'docker'
