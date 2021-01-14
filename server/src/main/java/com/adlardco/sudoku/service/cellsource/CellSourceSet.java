@@ -23,13 +23,11 @@ public class CellSourceSet implements CellSource {
         this(Arrays.asList(sources));
     }
 
-    @Override
-    public Cell getCell() {
+    @Override public Cell getCell() {
         return sources.get(0).getCell();
     }
 
-    @Override
-    public Set<Cell> getCells() {
+    @Override public Set<Cell> getCells() {
         return sources.stream().flatMap(source -> source.getCells().stream()).collect(Collectors.toSet());
     }
 

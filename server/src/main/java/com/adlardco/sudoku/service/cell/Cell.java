@@ -7,8 +7,7 @@ import lombok.NonNull;
 
 @EqualsAndHashCode
 public class Cell {
-    @Getter
-    private final OptionSet optionSet;
+    @Getter private final OptionSet optionSet;
 
     public Cell(@NonNull Cell cell) {
         this.optionSet = new OptionSet(cell.getOptionSet());
@@ -32,8 +31,7 @@ public class Cell {
         };
     }
 
-    @Override
-    public String toString() {
+    @Override public String toString() {
         return optionSet.toString();
     }
 }

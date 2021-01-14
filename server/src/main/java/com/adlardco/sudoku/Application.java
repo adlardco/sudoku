@@ -7,9 +7,11 @@ import com.adlardco.sudoku.controller.GridController;
 import com.adlardco.sudoku.controller.model.GridModel;
 import com.adlardco.sudoku.service.grid.GridConverter;
 import com.adlardco.sudoku.controller.InfoController;
+import com.adlardco.sudoku.service.grid.GridModelValidator;
 import com.google.gson.Gson;
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
+import org.eclipse.jetty.http.HttpStatus;
 import spark.Request;
 import spark.Response;
 import spark.Spark;
@@ -57,6 +59,10 @@ public class Application {
         });
         post("/api/grid", (request, response) -> {
             var grid = gson.fromJson(request.body(), GridModel.class);
+            if(!new GridModelValidator(config).isValid(grid)) {
+                response.status(HttpStatus.BAD_REQUEST_400);
+                return "";
+            }
             response.type(CONTENT_TYPE);
             var controller = new GridController(config, new GridConverter(config));
             return gson.toJson(controller.solve(grid));

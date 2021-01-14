@@ -20,8 +20,7 @@ public class BacktrackRule implements Rule {
         this.progressMonitor = new RuleProgressMonitor(grid);
     }
 
-    @Override
-    public void apply() {
+    @Override public void apply() {
         if (anyCellsInvalid()) {
             cellStore.restoreTo(grid.getCells());
         }

@@ -10,8 +10,7 @@ public class ColumnCellSource extends AbstractCellSource {
         super(grid, index);
     }
 
-    @Override
-    protected boolean match(int otherIndex) {
+    @Override protected boolean match(int otherIndex) {
         checkElementIndex(otherIndex, grid.getNumCells());
 
         if (index == otherIndex) {

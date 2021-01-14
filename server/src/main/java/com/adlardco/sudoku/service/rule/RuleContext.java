@@ -9,9 +9,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class RuleContext {
 
-    @Getter
-    @NonNull
-    private final Grid grid;
+    @Getter @NonNull private final Grid grid;
     private final int maxNumIterations;
     private int numIterations = 0;
 

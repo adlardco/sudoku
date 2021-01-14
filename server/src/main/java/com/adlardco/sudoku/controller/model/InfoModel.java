@@ -6,7 +6,6 @@ import lombok.*;
 @AllArgsConstructor
 @EqualsAndHashCode
 @ToString
-@InfoModelValid
 public class InfoModel {
 
     private final String status;

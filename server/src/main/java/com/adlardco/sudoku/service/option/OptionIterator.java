@@ -2,17 +2,19 @@ package com.adlardco.sudoku.service.option;
 
 import com.adlardco.sudoku.service.cell.Cell;
 import com.adlardco.sudoku.service.cell.CellState;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.NonNull;
 import java.util.List;
 
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class OptionIterator {
 
     private final List<Cell> cells;
     private OptionId optionId;
 
     public OptionIterator(@NonNull List<Cell> cells) {
-        this.cells = cells;
-        this.optionId = new OptionId(0, 0);
+        this(cells, new OptionId(0, 0));
     }
 
     public OptionId get() {

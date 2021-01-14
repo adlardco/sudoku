@@ -13,13 +13,10 @@ import java.util.stream.IntStream;
 @AllArgsConstructor
 public class AllCellsRuleSource implements RuleSource {
 
-    @NonNull
-    private final RuleContext context;
+    @NonNull private final RuleContext context;
 
-    @Override
-    public List<Rule> getRules() {
-        var grid = context.getGrid();
-        return IntStream.range(0, grid.getNumCells())
+    @Override public List<Rule> getRules() {
+        return IntStream.range(0, context.getGrid().getNumCells())
                 .mapToObj(index -> new RuleSet(context, new CellRuleSource(context, index)))
                 .collect(Collectors.toList());
     }

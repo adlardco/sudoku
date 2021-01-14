@@ -13,8 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 public final class CellRuleSource implements RuleSource {
 
-    @NonNull
-    private final RuleContext context;
+    @NonNull private final RuleContext context;
     private final int index;
 
     @Override

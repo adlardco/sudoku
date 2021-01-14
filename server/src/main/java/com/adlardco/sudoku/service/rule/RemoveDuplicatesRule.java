@@ -11,8 +11,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class RemoveDuplicatesRule implements Rule {
 
-    @NonNull
-    private final CellSource cellSource;
+    @NonNull private final CellSource cellSource;
 
     @Override
     public void apply() {

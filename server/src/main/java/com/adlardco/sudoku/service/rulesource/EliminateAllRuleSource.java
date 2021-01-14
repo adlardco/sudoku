@@ -19,8 +19,7 @@ import java.util.stream.Stream;
 @AllArgsConstructor
 public final class EliminateAllRuleSource implements RuleSource {
 
-    @NonNull
-    private final RuleContext context;
+    @NonNull private final RuleContext context;
     private final int index;
 
     @Override

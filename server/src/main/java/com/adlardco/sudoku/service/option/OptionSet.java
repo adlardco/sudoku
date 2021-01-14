@@ -17,9 +17,7 @@ import static com.google.common.base.Preconditions.checkArgument;
 public class OptionSet {
     @NonNull private final Set<Integer> options;
 
-    public OptionSet(@NonNull OptionSet optionSet) {
-        this.options = new HashSet<>(optionSet.options);
-    }
+    public OptionSet(@NonNull OptionSet optionSet) { this(new HashSet<>(optionSet.options)); }
 
     public static OptionSet of(int... options) {
         var theOptions = new HashSet<Integer>();
@@ -84,8 +82,7 @@ public class OptionSet {
         options.clear();
     }
 
-    @Override
-    public String toString() {
+    @Override public String toString() {
         return options.toString();
     }
 }

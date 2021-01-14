@@ -10,15 +10,13 @@ import com.adlardco.sudoku.service.rulesource.SolveRuleSource;
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
 
-import javax.validation.Valid;
-
 @AllArgsConstructor
 public class GridController {
 
     @NonNull private final ApplicationConfig config;
     @NonNull private final GridConverter gridConverter;
 
-    public GridModel solve(@Valid @NonNull GridModel gridModel) {
+    public GridModel solve(@NonNull GridModel gridModel) {
         var grid = gridConverter.fromCellValues(gridModel.getCellValues());
         applyRule(grid);
         return new GridModel(gridConverter.toCellValues(grid));

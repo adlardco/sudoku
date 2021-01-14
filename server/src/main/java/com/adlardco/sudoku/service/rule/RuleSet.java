@@ -10,11 +10,8 @@ import java.util.List;
 @AllArgsConstructor
 public class RuleSet implements Rule {
 
-    @NonNull
-    private final RuleContext context;
-    @Getter
-    @NonNull
-    private final RuleSource ruleSource;
+    @NonNull private final RuleContext context;
+    @Getter @NonNull private final RuleSource ruleSource;
 
     @Override
     public void apply() {

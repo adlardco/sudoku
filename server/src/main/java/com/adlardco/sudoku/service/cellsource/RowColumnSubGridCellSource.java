@@ -17,13 +17,11 @@ public class RowColumnSubGridCellSource implements CellSource {
         );
     }
 
-    @Override
-    public Set<Cell> getCells() {
+    @Override public Set<Cell> getCells() {
         return cellSource.getCells();
     }
 
-    @Override
-    public Cell getCell() {
+    @Override public Cell getCell() {
         return cellSource.getCell();
     }
 }

@@ -10,7 +10,6 @@ import java.util.List;
 @NoArgsConstructor
 @EqualsAndHashCode
 @ToString
-@GridModelValid
 public class GridModel {
 
     private List<Integer> cellValues;

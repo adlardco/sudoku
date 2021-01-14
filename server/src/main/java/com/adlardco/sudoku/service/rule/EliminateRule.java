@@ -14,11 +14,8 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class EliminateRule implements Rule {
 
-    @NonNull
-    private final OptionSetFactory optionSetFactory;
-    @Getter
-    @NonNull
-    private final CellSource cellSource;
+    @NonNull private final OptionSetFactory optionSetFactory;
+    @Getter @NonNull private final CellSource cellSource;
 
     @Override
     public void apply() {

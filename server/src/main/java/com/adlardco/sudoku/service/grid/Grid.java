@@ -11,8 +11,7 @@ import java.util.stream.IntStream;
 
 @EqualsAndHashCode(exclude = "sizeCalculator")
 public class Grid {
-    @Getter
-    private final List<Cell> cells;
+    @Getter private final List<Cell> cells;
     private final GridSizeCalculator sizeCalculator;
 
     public Grid(@NonNull List<Cell> cells) {
@@ -40,8 +39,7 @@ public class Grid {
         return sizeCalculator.getSubSize();
     }
 
-    @Override
-    public String toString() {
+    @Override public String toString() {
         return cells.toString();
     }
 }

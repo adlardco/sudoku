@@ -8,8 +8,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class RuleProgressMonitor {
 
-    @NonNull
-    private final Grid grid;
+    @NonNull private final Grid grid;
     private Long numCellsSolved = null;
 
     public boolean hasNoProgressBeenMade() {

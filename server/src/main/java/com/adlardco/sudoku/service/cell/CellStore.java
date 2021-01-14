@@ -9,8 +9,7 @@ import java.util.stream.Collectors;
 
 public class CellStore {
 
-    @Getter
-    private final List<Cell> cells = new ArrayList<>();
+    @Getter private final List<Cell> cells = new ArrayList<>();
 
     public void save(@NonNull List<Cell> cells) {
         var copiedCells = copyCells(cells);

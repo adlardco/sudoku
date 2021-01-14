@@ -2,21 +2,18 @@ package com.adlardco.sudoku.service.grid;
 
 import com.adlardco.sudoku.config.ApplicationConfig;
 import com.adlardco.sudoku.controller.model.GridModel;
-import com.adlardco.sudoku.controller.model.GridModelValid;
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+
 import java.util.List;
 
 @AllArgsConstructor
-public class GridModelValidator implements ConstraintValidator<GridModelValid, GridModel> {
+public class GridModelValidator {
 
     @NonNull private final ApplicationConfig config;
 
-    @Override
-    public boolean isValid(GridModel gridModel, ConstraintValidatorContext context) {
-        var cellValues = gridModel.getCellValues();
+    public boolean isValid(GridModel grid) {
+        var cellValues = grid == null ? null : grid.getCellValues();
         return hasValidNumberOfValues(cellValues) && noInvalidCells(cellValues);
     }
 

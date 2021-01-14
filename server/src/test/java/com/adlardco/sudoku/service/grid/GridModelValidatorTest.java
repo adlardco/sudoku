@@ -35,19 +35,19 @@ public class GridModelValidatorTest {
             1, 2, 3, 4, 5, 6, 7, 8, 9,
             1, 2, 3, 4, 5, 6, 7, 8, 9,
             1, 2, 3, 4, 5, 6, 7, 8, 9
-        )), null));
+        ))));
     }
 
     @Test
     public void testIsInvalidWithNullValues() {
         var validator = new GridModelValidator(config);
-        assertFalse(validator.isValid(new GridModel(null), null));
+        assertFalse(validator.isValid(new GridModel(null)));
     }
 
     @Test
     public void testIsInvalidWithTooFewValues() {
         var validator = new GridModelValidator(config);
-        assertFalse(validator.isValid(new GridModel(List.of(1, 2)), null));
+        assertFalse(validator.isValid(new GridModel(List.of(1, 2))));
     }
 
     @Test
@@ -63,6 +63,6 @@ public class GridModelValidatorTest {
             1, 2, 3, 4, 5, 6, 0, 8, 9,
             1, 2, 3, 4, 5, 6, 0, 8, 9,
             1, 2, 3, 4, 5, 6, 0, 8, 10
-        )), null));
+        ))));
     }
 }
