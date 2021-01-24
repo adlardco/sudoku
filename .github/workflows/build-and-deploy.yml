@@ -22,14 +22,14 @@ jobs:
       env:
         HEROKU_API_KEY: ${{ secrets.API_KEY }}
       run: heroku container:push -a ${{ secrets.APP_NAME }} web 
-      working-directory: ${{ UI_WORKING_DIR }}
+      working-directory: ${{ env.UI_WORKING_DIR }}
     - name: build-and-push
       env:
         HEROKU_API_KEY: ${{ secrets.API_KEY }}
       run: heroku container:push -a ${{ secrets.APP_NAME }} web 
-      working-directory: ${{ SERVER_WORKING_DIR }}
+      working-directory: ${{ env.SERVER_WORKING_DIR }}
     - name: release
       env:
         HEROKU_API_KEY: ${{ secrets.API_KEY }}
       run: heroku container:release -a ${{ secrets.APP_NAME }} web
-      working-directory: ${{ SERVER_WORKING_DIR }}
+      working-directory: ${{ env.SERVER_WORKING_DIR }}
