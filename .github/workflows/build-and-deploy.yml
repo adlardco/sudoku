@@ -1,25 +1,35 @@
-name: build-and-deploy
+name: build-and-deploy-java
 on:
   push:
     branches: [ main ]
     paths:
-    - 'server/**'
+    - 'server-java/**'
     - 'ui/**'
   workflow_dispatch:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-18.04
+    env:
+      SERVER_WORKING_DIR: ./server-java
+      UI_WORKING_DIR: ./ui
     steps:
     - uses: actions/checkout@v2
     - name: login
       env: 
         HEROKU_API_KEY: ${{ secrets.API_KEY }}
-      run: heroku container:login 
+      run: heroku container:login
+    - name: build-and-push-ui
+      env:
+        HEROKU_API_KEY: ${{ secrets.API_KEY }}
+      run: heroku container:push -a ${{ secrets.APP_NAME }} web 
+      working-directory: ${{ UI_WORKING_DIR }}
     - name: build-and-push
       env:
         HEROKU_API_KEY: ${{ secrets.API_KEY }}
       run: heroku container:push -a ${{ secrets.APP_NAME }} web 
+      working-directory: ${{ SERVER_WORKING_DIR }}
     - name: release
       env:
         HEROKU_API_KEY: ${{ secrets.API_KEY }}
       run: heroku container:release -a ${{ secrets.APP_NAME }} web
+      working-directory: ${{ SERVER_WORKING_DIR }}

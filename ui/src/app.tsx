@@ -32,7 +32,6 @@ export default class App extends React.Component<{}, {
   private static readonly LocalHost = 'localhost';
   private static readonly LocalPort = 8080;
   private static readonly ServerContext = 'api';
-  private static readonly LocalUrl = new URL(`http://${App.LocalHost}:${App.LocalPort}/${App.ServerContext}/`);
   private static readonly GoogleUrl = new URL('https://www.google.com');
   private static readonly ServerTimeout = 15000;
   private static readonly GoogleTimeout = 5000;
@@ -57,7 +56,7 @@ export default class App extends React.Component<{}, {
       connected: false
     };
     this.googleController = new GoogleController(new RestControllerImpl(App.GoogleUrl, App.GoogleTimeout));
-    const url = window.location.hostname === App.LocalHost ? App.LocalUrl : this.remoteURL();
+    const url = this.url();
     const restController = new RestControllerImpl(url, App.ServerTimeout);
     this.infoController = new InfoController(restController);
     this.gridController = new GridController(restController);
@@ -135,12 +134,13 @@ export default class App extends React.Component<{}, {
   private clearDisabled(): boolean { return this.state.updating; }
   private gridHasValue(grid: GridModel): boolean { return grid.cellValues.some(value => value > 0); }
   private gridIsSolved(grid: GridModel): boolean { return !grid.cellValues.some(value => value < 1); }
-  
-  private remoteURL(): URL {
-    const text = `${window.location.protocol}//${window.location.host}/${App.ServerContext}/`;
+
+  private url(): URL {
+    const hostAndPort = window.location.hostname === App.LocalHost ? `${App.LocalHost}:${App.LocalPort}` : window.location.host;
+    const text = `${window.location.protocol}//${hostAndPort}/${App.ServerContext}/`;
     return new URL(text);
   }
-
+  
   private showBuildTime(): boolean { 
     const flag = new FeatureFlag('showBuildTime');
     return flag.isEnabled();

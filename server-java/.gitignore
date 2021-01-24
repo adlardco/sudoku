@@ -1,0 +1,13 @@
+.gradle
+.settings
+build/
+bin/
+!gradle/wrapper/gradle-wrapper.jar
+.idea
+.project
+*.iws
+*.iml
+*.ipr
+*.class
+*.classpath
+lombok.config
