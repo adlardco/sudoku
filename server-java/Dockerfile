@@ -6,7 +6,7 @@ COPY build.gradle gradlew gradlew.bat settings.gradle $APP_HOME
 COPY gradle $APP_HOME/gradle
 COPY src $APP_HOME/src
 RUN mkdir -p $APP_HOME/src/main/resources/public
-COPY --from=sudoku-ui:latest /src/build $APP_HOME/src/main/resources/public
+COPY --from=adlardco/sudoku-ui:latest /src/build $APP_HOME/src/main/resources/public
 RUN chmod +x ./gradlew
 RUN ./gradlew --stacktrace test shadowJar
 
