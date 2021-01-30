@@ -13,23 +13,31 @@ jobs:
       SERVER_WORKING_DIR: ./server-java
       UI_WORKING_DIR: ./ui
     steps:
-    - uses: actions/checkout@v2
-    - name: login
-      env: 
-        HEROKU_API_KEY: ${{ secrets.API_KEY }}
-      run: heroku container:login
-    - name: build-and-push-ui
-      env:
-        HEROKU_API_KEY: ${{ secrets.API_KEY }}
-      run: heroku container:push -a ${{ secrets.APP_NAME }} web 
-      working-directory: ${{ env.UI_WORKING_DIR }}
-    - name: build-and-push
-      env:
-        HEROKU_API_KEY: ${{ secrets.API_KEY }}
-      run: heroku container:push -a ${{ secrets.APP_NAME }} web 
-      working-directory: ${{ env.SERVER_WORKING_DIR }}
-    - name: release
-      env:
-        HEROKU_API_KEY: ${{ secrets.API_KEY }}
-      run: heroku container:release -a ${{ secrets.APP_NAME }} web
-      working-directory: ${{ env.SERVER_WORKING_DIR }}
+      - 
+        uses: actions/checkout@v2
+      - 
+        name: login
+        env: 
+          HEROKU_API_KEY: ${{ secrets.API_KEY }}
+        run: heroku container:login
+      - 
+        name: build-and-push-ui
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: adlardco/sudoku-ui
+          tag_with_ref: true
+        working-directory: ${{ env.UI_WORKING_DIR }}
+      - 
+        name: build-and-push
+        env:
+          HEROKU_API_KEY: ${{ secrets.API_KEY }}
+        run: heroku container:push -a ${{ secrets.APP_NAME }} web 
+        working-directory: ${{ env.SERVER_WORKING_DIR }}
+      - 
+        name: release
+        env:
+          HEROKU_API_KEY: ${{ secrets.API_KEY }}
+        run: heroku container:release -a ${{ secrets.APP_NAME }} web
+        working-directory: ${{ env.SERVER_WORKING_DIR }}
