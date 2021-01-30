@@ -10,7 +10,6 @@ jobs:
     runs-on: ubuntu-18.04
     env:
       SERVER_DIR: ./server-java
-      UI_DIR: ./ui
     steps:
       - 
         name: Checkout The Code
