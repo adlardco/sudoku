@@ -1,4 +1,4 @@
-name: Builds The UI Docker Image
+name: Build The UI Docker Image
 on:
   push:
     branches: [ main ]

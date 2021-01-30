@@ -1,13 +1,14 @@
-name: infra
+name: Deploy The Infrastructure
 on:
   workflow_dispatch:    
 jobs:
-  infra:
+  infrastructure:
     runs-on: ubuntu-18.04
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-    - name: infra
+    - 
+      name: Deploy The Infrastructure
       id: infra
       uses: ./infra
       with:
