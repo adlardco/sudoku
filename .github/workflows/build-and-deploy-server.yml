@@ -1,0 +1,33 @@
+name: Build And Deploy The Server
+on:
+  push:
+    branches: [ main ]
+    paths:
+    - 'server/**'
+  workflow_dispatch:
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-18.04
+    env:
+      SERVER_DIR: ./server
+    steps:
+      - 
+        name: Checkout The Code
+        uses: actions/checkout@v2
+      - 
+        name: Login To Heroku
+        env: 
+          HEROKU_API_KEY: ${{ secrets.API_KEY }}
+        run: heroku container:login
+      - 
+        name: Build And Push The Server Image
+        env:
+          HEROKU_API_KEY: ${{ secrets.API_KEY }}
+        run: heroku container:push -a ${{ secrets.APP_NAME }} web 
+        working-directory: ${{ env.SERVER_WORKING_DIR }}
+      - 
+        name: Release The Server
+        env:
+          HEROKU_API_KEY: ${{ secrets.API_KEY }}
+        run: heroku container:release -a ${{ secrets.APP_NAME }} web
+        working-directory: ${{ env.SERVER_WORKING_DIR }}
